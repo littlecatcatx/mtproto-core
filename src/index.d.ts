@@ -1,5 +1,8 @@
 import RPC from './rpc';
 import { Methods } from './tl/types/schema';
+import { updateShortMessage, updatesTooLong, updateShortChatMessage,
+  updateShort, updateShortSentMessage, updates, updatesCombined } from './tl/types/schema';
+import { EventEmitter } from 'events';
 
 type MethodReturnMap<T extends Methods> = {
   [K in keyof T]: T[K] extends { return: infer R } ? R : never;
@@ -21,7 +24,22 @@ declare class CustomStorage {
   get(key: string): Promise<string | null>;
 }
 
+declare interface UpdatesEventMap {
+  'updatesTooLong': [updatesTooLong],
+  'updateShortMessage': [updateShortMessage],
+  'updateShortChatMessage': [updateShortChatMessage],
+  'updateShort': [updateShort],
+  'updatesCombined': [updatesCombined],
+  'updates': [updates],
+  'updateShortSentMessage': [updateShortSentMessage],
+}
+
 declare class MTProto {
+  readonly updates: EventEmitter<UpdatesEventMap>;
+  readonly api_id: number;
+  readonly api_hash: string;
+  readonly storage: CustomStorage;
+
   constructor(options: {
     api_id: number;
     api_hash: string;
