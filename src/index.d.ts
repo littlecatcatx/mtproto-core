@@ -1,3 +1,4 @@
+//@ts-ignore
 import RPC from './rpc';
 import { Methods } from './tl/types/schema';
 import { updateShortMessage, updatesTooLong, updateShortChatMessage,
@@ -70,4 +71,5 @@ declare class MTProto {
 }
 
 export { CustomStorage, Methods, MethodReturnMap, MethodOptions, Error };
+export * from './tl/types/schema';
 export default MTProto;

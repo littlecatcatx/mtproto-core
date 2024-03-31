@@ -28,8 +28,8 @@
     "/envs",
     "/src"
   ],
-  "main": "./envs/node/index.js",
-  "types": "src/index.d.ts",
+  "main": "./envs/browser/index.js",
+  "types": "./envs/browser/index.d.ts",
   "engines": {
     "node": ">=18"
   },
