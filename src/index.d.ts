@@ -20,6 +20,12 @@ type Error = {
   error_message: string;
 };
 
+declare class Storage {
+  readonly localStorage: CustomStorage;
+  set(key: string, value: string): Promise<void>;
+  get(key: string): Promise<string | null>;
+}
+
 declare class CustomStorage {
   set(key: string, value: string): Promise<void>;
   get(key: string): Promise<string | null>;
@@ -39,7 +45,7 @@ declare class MTProto {
   readonly updates: EventEmitter<UpdatesEventMap>;
   readonly api_id: number;
   readonly api_hash: string;
-  readonly storage: CustomStorage;
+  readonly storage: Storage;
 
   constructor(options: {
     api_id: number;
