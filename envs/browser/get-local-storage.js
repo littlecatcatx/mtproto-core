@@ -10,4 +10,4 @@ function getLocalStorage() {
   };
 }
 
-module.exports = getLocalStorage;
+export default getLocalStorage;

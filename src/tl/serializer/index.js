@@ -1,6 +1,6 @@
-const bigInt = require('big-integer');
-const Counter = require('../counter');
-const builderMap = require('../builder');
+import bigInt from 'big-integer';
+import Counter from '../counter';
+import builderMap from '../builder';
 
 class Serializer {
   constructor(fn, params) {
@@ -145,4 +145,4 @@ class Serializer {
   }
 }
 
-module.exports = Serializer;
+export default Serializer;

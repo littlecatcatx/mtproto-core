@@ -1,4 +1,4 @@
-const builderMap = require('../builder');
+import builderMap from '../builder';
 
 class Counter {
   constructor(fn, params) {
@@ -102,4 +102,4 @@ class Counter {
   }
 }
 
-module.exports = Counter;
+export default Counter;

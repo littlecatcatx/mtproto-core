@@ -7994,4 +7994,4 @@ const result = { _: 'inlineQueryPeerTypeBotPM' };
 return result;
   }],
 ]);
-module.exports = parserMap;
+export default parserMap;

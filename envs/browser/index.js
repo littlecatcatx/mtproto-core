@@ -1,10 +1,10 @@
-const makeMTProto = require('../../src');
-const SHA1 = require('./sha1');
-const SHA256 = require('./sha256');
-const PBKDF2 = require('./pbkdf2');
-const Transport = require('./transport');
-const getRandomBytes = require('./get-random-bytes');
-const getLocalStorage = require('./get-local-storage');
+import makeMTProto from '../../src';
+import SHA1 from './sha1';
+import SHA256 from './sha256';
+import PBKDF2 from './pbkdf2';
+import Transport from './transport';
+import getRandomBytes from './get-random-bytes';
+import getLocalStorage from './get-local-storage';
 
 function createTransport(dc, crypto) {
   return new Transport(dc, crypto);
@@ -19,4 +19,4 @@ const MTProto = makeMTProto({
   createTransport,
 });
 
-module.exports = MTProto;
+export default MTProto;

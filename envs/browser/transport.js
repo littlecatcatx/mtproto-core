@@ -1,4 +1,4 @@
-const Obfuscated = require('../../src/transport/obfuscated');
+import Obfuscated from '../../src/transport/obfuscated';
 
 const subdomainsMap = {
   1: 'pluto',
@@ -74,4 +74,4 @@ class Transport extends Obfuscated {
   }
 }
 
-module.exports = Transport;
+export default Transport;

@@ -28,6 +28,7 @@
     "/envs",
     "/src"
   ],
+  "type": "module",
   "main": "./envs/browser/index.js",
   "types": "./envs/browser/index.d.ts",
   "engines": {
@@ -44,13 +45,13 @@
   },
   "license": "GPL-3.0",
   "dependencies": {
-    "aes-js": "3.1.2",
+    "aes-js": "github:littlecatcatx/aes-js#aa9a53aa72a4ccacbfa29dc43894cb1a4c9e4231",
     "big-integer": "1.6.51",
     "configstore": "5.0.1",
     "debug": "4.3.3",
     "events": "3.3.0",
     "leemon": "6.2.0",
-    "lodash.debounce": "4.0.8",
+    "lodash": "^4.17.21",
     "pako": "2.1.0"
   },
   "devDependencies": {

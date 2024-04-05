@@ -1,10 +1,10 @@
-const bigInt = require('big-integer');
-const debounce = require('lodash.debounce');
-const AES = require('../crypto/aes');
-const builderMap = require('../tl/builder');
-const Serializer = require('../tl/serializer');
-const Deserializer = require('../tl/deserializer');
-const {
+import bigInt from 'big-integer';
+import { debounce } from 'lodash';
+import AES from '../crypto/aes';
+import builderMap from '../tl/builder';
+import Serializer from '../tl/serializer';
+import Deserializer from '../tl/deserializer';
+import {
   xorBytes,
   intsToLong,
   concatBytes,
@@ -14,9 +14,8 @@ const {
   bytesToBigInt,
   longToBytesRaw,
   bytesToBytesRaw,
-} = require('../utils/common');
-const baseDebug = require('../utils/common/base-debug');
-const pqPrimeFactorization = require('../crypto/pq');
+} from '../utils/common';
+import pqPrimeFactorization from '../crypto/pq';
 
 class RPC {
   constructor({ dc, context, transport }) {
@@ -25,8 +24,7 @@ class RPC {
     this.context = context;
     this.transport = transport;
 
-    this.debug = baseDebug.extend(`rpc-${this.dc.id}`);
-    this.debug('init');
+    console.log('init');
 
     this.isAuth = false;
     this.pendingAcks = [];
@@ -65,7 +63,7 @@ class RPC {
   async handleTransportError(payload) {
     const { type } = payload;
 
-    this.debug('transport error', payload);
+    console.log('transport error', payload);
 
     // https://core.telegram.org/mtproto/mtproto-transports#transport-errors
     if (type === 'transport') {
@@ -77,7 +75,7 @@ class RPC {
 
       // transport flood
       if (payload.code === 429) {
-        this.debug('transport flood');
+        console.log('transport flood');
       }
     }
   }
@@ -97,7 +95,7 @@ class RPC {
           // TODO: Handle config
         })
         .catch((error) => {
-          this.debug(`error when calling the method help.getConfig:`, error);
+          console.log(`error when calling the method help.getConfig:`, error);
         });
     } else {
       this.nonce = this.crypto.getRandomBytes(16);
@@ -451,7 +449,7 @@ class RPC {
     const { messageId } = params;
 
     if (bigInt(messageId).isEven()) {
-      this.debug('message id from server is even', message);
+      console.log('message id from server is even', message);
 
       return;
     }
@@ -463,7 +461,7 @@ class RPC {
     }
 
     if (message._ === 'mt_msg_container') {
-      this.debug('handling container');
+      console.log('handling container');
 
       message.messages.forEach((message) => {
         this.handleDecryptedMessage(message.body, {
@@ -475,7 +473,7 @@ class RPC {
     }
 
     if (['mt_bad_server_salt', 'mt_bad_msg_notification'].includes(message._)) {
-      this.debug(`handling ${message._} for message ${message.bad_msg_id}`);
+      console.log(`handling ${message._} for message ${message.bad_msg_id}`);
 
       if (message.error_code === 48) {
         await this.setStorageItem(
@@ -500,14 +498,14 @@ class RPC {
           .catch(waitMessage.reject);
         this.messagesWaitResponse.delete(message.bad_msg_id);
       } else {
-        this.debug(`${message._} for a non-existent message`, message);
+        console.log(`${message._} for a non-existent message`, message);
       }
 
       return;
     }
 
     if (message._ === 'mt_new_session_created') {
-      this.debug(`handling new session created`);
+      console.log(`handling new session created`);
 
       this.ackMessage(messageId);
       await this.setStorageItem(
@@ -519,7 +517,7 @@ class RPC {
     }
 
     if (message._ === 'mt_msgs_ack') {
-      this.debug('handling acknowledge for', message.msg_ids);
+      console.log('handling acknowledge for', message.msg_ids);
 
       message.msg_ids.forEach((msgId) => {
         const waitMessage = this.messagesWaitResponse.get(msgId);
@@ -538,7 +536,7 @@ class RPC {
     if (message._ === 'mt_rpc_result') {
       this.ackMessage(messageId);
 
-      this.debug('handling RPC result for message', message.req_msg_id);
+      console.log('handling RPC result for message', message.req_msg_id);
 
       const waitMessage = this.messagesWaitResponse.get(message.req_msg_id);
 
@@ -553,7 +551,7 @@ class RPC {
       return;
     }
 
-    this.debug('handling update', message._);
+    console.log('handling update', message._);
 
     this.ackMessage(messageId);
     this.context.updates.emit(message._, message);
@@ -773,4 +771,4 @@ class RPC {
   }
 }
 
-module.exports = RPC;
+export default RPC;

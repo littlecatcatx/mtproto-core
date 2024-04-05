@@ -1,4 +1,4 @@
-const {
+import {
   eGCD_,
   greater,
   divide_,
@@ -13,12 +13,12 @@ const {
   add_,
   one,
   bpe,
-} = require('leemon');
-const {
+} from 'leemon';
+import {
   hexToBytes,
   bytesToBigInt,
   getRandomInt,
-} = require('../../utils/common');
+} from '../../utils/common';
 
 function leemonBigIntToBytes(bigInt) {
   const str = bigInt2str(bigInt, 16);
@@ -115,4 +115,4 @@ function pqPrimeFactorization(pqBytes) {
   return result;
 }
 
-module.exports = pqPrimeFactorization;
+export default pqPrimeFactorization;

@@ -1,11 +1,11 @@
-const bigInt = require('big-integer');
-const {
+import bigInt from 'big-integer';
+import {
   xorBytes,
   concatBytes,
   bigIntToBytes,
   bytesToBigInt,
-} = require('../utils/common');
-const RSA = require('../utils/rsa');
+} from '../utils/common';
+import RSA from '../utils/rsa';
 
 class Crypto {
   constructor({ SHA1, SHA256, PBKDF2, getRandomBytes }) {
@@ -76,4 +76,4 @@ class Crypto {
   }
 }
 
-module.exports = Crypto;
+export default Crypto;

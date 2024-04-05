@@ -1,3 +1,4 @@
-const createDebug = require('debug');
+import createDebug from 'debug';
 
-module.exports = createDebug('mtproto-core');
+const debug = createDebug('mtproto-core');
+export default debug;

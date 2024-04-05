@@ -1,11 +1,11 @@
-const bigInt = require('big-integer');
-const Serializer = require('../../tl/serializer');
-const {
+import bigInt from 'big-integer';
+import Serializer from '../../tl/serializer';
+import {
   bytesToHex,
   hexToBytes,
   bigIntToBytes,
   bytesToBigInt,
-} = require('../../utils/common');
+} from '../../utils/common';
 
 const publisKeys = [
   {
@@ -97,4 +97,4 @@ class RSA {
   }
 }
 
-module.exports = RSA;
+export default RSA;

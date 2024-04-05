@@ -9602,4 +9602,4 @@ const builderMap = {
     this.flag(this.int, params.id);
   },
 };
-module.exports = builderMap;
+export default builderMap;

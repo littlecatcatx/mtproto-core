@@ -14,4 +14,4 @@ class TempLocalStorage {
 
 const tempLocalStorage = new TempLocalStorage();
 
-module.exports = tempLocalStorage;
+export default tempLocalStorage;

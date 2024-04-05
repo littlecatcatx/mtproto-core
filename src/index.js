@@ -1,10 +1,7 @@
-const EventEmitter = require('events');
-const RPC = require('./rpc');
-const Crypto = require('./crypto');
-const Storage = require('./storage');
-const baseDebug = require('./utils/common/base-debug');
-
-const debug = baseDebug.extend('main');
+import EventEmitter from 'events';
+import RPC from './rpc';
+import Crypto from './crypto';
+import Storage from './storage';
 
 const TEST_DC_LIST = [
   {
@@ -138,7 +135,7 @@ function makeMTProto(envMethods) {
             );
           })
           .catch((error) => {
-            debug(`error when copy auth to DC ${dc.id}`, error);
+            console.log(`error when copy auth to DC ${dc.id}`, error);
 
             return Promise.resolve();
           });
@@ -161,7 +158,7 @@ function makeMTProto(envMethods) {
       const dc = this.dcList.find(({ id }) => id === dcId);
 
       if (!dc) {
-        debug(`don't find DC ${dcId}`);
+        console.log(`don't find DC ${dcId}`);
 
         return;
       }
@@ -185,4 +182,4 @@ function makeMTProto(envMethods) {
   };
 }
 
-module.exports = makeMTProto;
+export default makeMTProto;

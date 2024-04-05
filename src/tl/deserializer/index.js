@@ -1,6 +1,6 @@
-const pako = require('pako');
-const parserMap = require('../parser');
-const { intsToLong } = require('../../utils/common');
+import pako from 'pako';
+import parserMap from '../parser';
+import { intsToLong } from '../../utils/common';
 
 class Deserializer {
   constructor(buffer) {
@@ -122,4 +122,4 @@ class Deserializer {
   }
 }
 
-module.exports = Deserializer;
+export default Deserializer;

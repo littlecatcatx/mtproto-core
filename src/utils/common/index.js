@@ -1,4 +1,4 @@
-const bigInt = require('big-integer');
+import bigInt from 'big-integer';
 
 function bytesIsEqual(bytes1, bytes2) {
   if (bytes1.length !== bytes2.length) {
@@ -102,7 +102,7 @@ function getRandomInt(maxValue) {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-module.exports = {
+export {
   bytesIsEqual,
   bigIntToBytes,
   hexToBytesRaw,

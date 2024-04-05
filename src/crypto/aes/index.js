@@ -1,5 +1,5 @@
-const aesjs = require('aes-js');
-const { xorBytes } = require('../../utils/common');
+import aesjs from 'aes-js';
+import { xorBytes } from '../../utils/common';
 
 const AES = aesjs.AES;
 AES.Counter = aesjs.Counter;
@@ -78,4 +78,4 @@ class ModeOfOperationIGE {
 
 AES.IGE = ModeOfOperationIGE;
 
-module.exports = AES;
+export default AES;
